@@ -1,20 +1,20 @@
 module.exports = (sequelize, DataType) => {
-    const materia = sequelize.define('materia', {
-        id_materia: {
+    const turno = sequelize.define('turno', {
+        id_turno: {
             allowNull: false,
             autoIncrement: true,
             primaryKey: true,
             type: DataType.INTEGER
         },
-        nombre_mat: {
+        tipo_turno: {
             allowNull: false,
             type: DataType.STRING
         }
     }, {
             timestamps: false
     });
-    //Asociaciones
+    //Asociaciones 
     
-    return materia;
+    return turno;
 };
 

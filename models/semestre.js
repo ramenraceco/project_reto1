@@ -1,12 +1,12 @@
 module.exports = (sequelize, DataType) => {
-    const materia = sequelize.define('materia', {
-        id_materia: {
+    const semestre = sequelize.define('semestre', {
+        id_semestre: {
             allowNull: false,
             autoIncrement: true,
             primaryKey: true,
             type: DataType.INTEGER
         },
-        nombre_mat: {
+        nombre_sem: {
             allowNull: false,
             type: DataType.STRING
         }
@@ -14,7 +14,7 @@ module.exports = (sequelize, DataType) => {
             timestamps: false
     });
     //Asociaciones
-    
-    return materia;
+
+    return semestre;
 };
 

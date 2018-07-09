@@ -1,27 +1,32 @@
 module.exports = (sequelize, DataType) => {
     const docente = sequelize.define('docente', {
         id_docente: {
-            type: DataType.INTEGER,
-            primaryKey: true,
+            allowNull: false,
             autoIncrement: true,
+            primaryKey: true,
+            type: DataType.INTEGER
         },
-        nombres_D: {
-            type: DataType.STRING(100),
-            allowNulll: false,
+        nombre_doc: {
+            allowNull: false,
+            type: DataType.STRING
         },
-        apellidos_D: {
-            type: DataType.STRING(100),
-            allowNulll: false,
-        },
-        especialidad_D: {
-            type: DataType.STRING(100),
-            allowNulll: false,
-        },
-    }); 
-
+        apellido_doc: {
+            allowNull: false,
+            type: DataType.STRING
+        }
+    }, {
+            timestamps: false
+    });
+    //Asociaciones
     docente.associate = (models) => {
-        docente.hasMany(models.materia, { as: 'materia', foreignKey: { name: 'fid_docente', allowNull: false } });
-    };
+        docente.hasMany(models.materia, {
+            as: 'materia',
+            foreignKey: {
+                name: 'id_docente',
+                allowNull: false
+            }
+        });
+    }
     return docente;
-
 };
+

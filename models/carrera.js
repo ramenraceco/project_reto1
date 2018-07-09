@@ -1,16 +1,12 @@
 module.exports = (sequelize, DataType) => {
-    const aula = sequelize.define('aula', {
-        id_aula: {
+    const carrera = sequelize.define('carrera', {
+        id_carrera: {
             allowNull: false,
             autoIncrement: true,
             primaryKey: true,
             type: DataType.INTEGER
         },
-        nombre_au: {
-            allowNull: false,
-            type: DataType.STRING
-        },
-        ubicacion_au: {
+        nombre_carrera: {
             allowNull: false,
             type: DataType.STRING
         }
@@ -18,15 +14,15 @@ module.exports = (sequelize, DataType) => {
             timestamps: false
     });
     //Asociaciones
-    aula.associate = (models) => {
-        aula.hasMany(models.materia, {
-            as: 'materia',
+    carrera.associate = (models) => {
+        carrera.hasMany(models.semestre, {
+            as: 'semestre',
             foreignKey: {
-                name: 'id_aula',
+                name: 'id_carrera',
                 allowNull: false
             }
         });
     }
-    return aula;
+    return carrera;
 };
 
