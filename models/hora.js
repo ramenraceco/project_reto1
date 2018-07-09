@@ -1,35 +1,32 @@
 module.exports = (sequelize, DataType) => {
     const hora = sequelize.define('hora', {
         id_hora: {
-            type: DataType.INTEGER,
-            primaryKey: true,
+            allowNull: false,
             autoIncrement: true,
+            primaryKey: true,
+            type: DataType.INTEGER
         },
-        hora_Inicio: {
-            type: DataType.STRING(100),
-            allowNulll: false,
-        },
-        hora_Final: {
-            type: DataType.STRING(100),
-            allowNulll: false,
-        },
-        fid_materia: {
-            type: DataType.INTEGER,
+        hora_ini: {
             allowNull: false,
+            type: DataType.STRING
         },
-        fid_aula: {
-            type: DataType.INTEGER,
+        hora_fin: {
             allowNull: false,
-        },
+            type: DataType.STRING
+        }
+    }, {
+            timestamps: false
     });
-   
+    //Asociaciones
     hora.associate = (models) => {
-        hora.belongsTo(models.materia, { as: 'materia', foreignKey: { name: 'fid_materia', allowNull: false } });
-    };
-
-    hora.associate = (models) => {
-        hora.belongsTo(models.aula, { as: 'aula', foreignKey: { name: 'fid_aula', allowNull: false } });
-    };
+        hora.hasMany(models.materia, {
+            as: 'materia',
+            foreignKey: {
+                name: 'id_hora',
+                allowNull: false
+            }
+        });
+    }
     return hora;
 };
 
